@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 type PITerm interface {
-	setTerm(int) PITerm
+	setTerm(int)
 	//getTerm()
 	calculateTerm() float64
 	getFinalCalculation() func(float64) float64
@@ -14,10 +14,10 @@ type Nilakantha struct {
 	isOddTerm bool
 }
 
-func (n Nilakantha) setTerm(term int) PITerm {
+func (n *Nilakantha) setTerm(term int) {
 	n.term = term
 	n.isOddTerm = (term%2 != 0)
-	return n
+
 }
 
 /*
@@ -47,8 +47,8 @@ func createTerm(numOfStep int) []PITerm {
 
 	for i := 0; i < numOfStep; i++ {
 		n := Nilakantha{}
-
-		piterm := n.setTerm(i)
+		piterm := PITerm(&n)
+		piterm.setTerm(i)
 
 		//terms = append(terms, piterm)
 		terms[i] = piterm

@@ -14,4 +14,11 @@ func main() {
 	*b = 100
 	fmt.Printf("Reference:%[1]v Dereference:%[2]v\n", b, *b)
 
+	mutateValue(b)
+	fmt.Printf("Reference:%[1]v Dereference:%[2]v\n", b, *b)
+
+}
+
+func mutateValue(v *int) {
+	*v = 200
 }
