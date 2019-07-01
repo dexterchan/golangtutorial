@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type PITerm interface {
 	setTerm(int)
@@ -8,7 +10,6 @@ type PITerm interface {
 	calculateTerm() float64
 	getFinalCalculation() func(float64) float64
 }
-
 type Nilakantha struct {
 	term      int
 	isOddTerm bool
@@ -43,15 +44,15 @@ func (n Nilakantha) getFinalCalculation() func(float64) float64 {
 }
 
 func createTerm(numOfStep int) []PITerm {
-	terms := make([]PITerm, numOfStep, numOfStep)
+	terms := make([]PITerm, 0, numOfStep)
 
 	for i := 0; i < numOfStep; i++ {
 		n := Nilakantha{}
 		piterm := PITerm(&n)
 		piterm.setTerm(i)
 
-		//terms = append(terms, piterm)
-		terms[i] = piterm
+		terms = append(terms, piterm)
+		//terms[i] = piterm
 	}
 	return terms
 }
