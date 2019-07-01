@@ -2,47 +2,10 @@ package main
 
 import (
 	"fmt"
+	"pi"
 )
 
-type PITerm interface {
-	setTerm(int)
-	//getTerm()
-	calculateTerm() float64
-	getFinalCalculation() func(float64) float64
-}
-type Nilakantha struct {
-	term      int
-	isOddTerm bool
-}
-
-func (n *Nilakantha) setTerm(term int) {
-	n.term = term
-	n.isOddTerm = (term%2 != 0)
-
-}
-
 /*
-func (n Nilakantha) getTerm() int {
-	return n.term
-}*/
-func (n Nilakantha) calculateTerm() float64 {
-	var d float64
-	var factor float64
-	d = (2.0) * (float64(n.term) + 1.0)
-	factor = d * (d + 1.0) * (d + 2.0)
-	ret := 4.0 / factor
-	if n.isOddTerm {
-		ret = ret * -1
-	}
-	return ret
-}
-
-func (n Nilakantha) getFinalCalculation() func(float64) float64 {
-	return func(x float64) float64 {
-		return 3.0 + x
-	}
-}
-
 func createTerm(numOfStep int) []PITerm {
 	terms := make([]PITerm, 0, numOfStep)
 
@@ -66,9 +29,14 @@ func executeTerm(terms []PITerm) float64 {
 	finalValue := finalValueFunc(accum)
 	return finalValue
 }
-
+*/
+func createTerm (numOfStep int) []pi.PITerm{
+	terms := make([]pi.PITerm, 0, numOfStep)
+	return terms
+}
 func main() {
+	
 	terms := createTerm(1000)
-	pi := executeTerm(terms)
-	fmt.Println(pi)
+	//pi := executeTerm(terms)
+	fmt.Println(terms)
 }
