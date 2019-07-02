@@ -1,8 +1,8 @@
 package pi
 
 type PITerm interface {
-	setTerm(int)
+	SetTerm(int)
 	//getTerm()
-	calculateTerm() float64
-	getFinalCalculation() func(float64) float64
+	CalculateTerm() float64
+	GetFinalCalculation() func(float64) float64
 }

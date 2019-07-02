@@ -1,17 +1,17 @@
-package Nilakantha
+package pi
 
 type Nilakantha struct {
 	term      int
 	isOddTerm bool
 }
 
-func (n *Nilakantha) setTerm(term int) {
+func (n *Nilakantha) SetTerm(term int) {
 	n.term = term
 	n.isOddTerm = (term%2 != 0)
 
 }
 
-func (n *Nilakantha) calculateTerm() float64 {
+func (n *Nilakantha) CalculateTerm() float64 {
 
 	var d float64
 	var factor float64
@@ -24,7 +24,7 @@ func (n *Nilakantha) calculateTerm() float64 {
 	return ret
 }
 
-func (n Nilakantha) getFinalCalculation() func(float64) float64 {
+func (n Nilakantha) GetFinalCalculation() func(float64) float64 {
 	return func(x float64) float64 {
 		return 3.0 + x
 	}
