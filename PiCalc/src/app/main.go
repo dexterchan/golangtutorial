@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"pi"
-	//"pi/Nilakantha"
+	"pi/algo"
 )
 
 /*
@@ -34,7 +34,7 @@ func executeTerm(terms []PITerm) float64 {
 func createTerm (numOfStep int) []pi.PITerm{
 	terms := make([]pi.PITerm, 0, numOfStep)
 	for i := 0; i < numOfStep; i++ {
-		n:=pi.Nilakantha{}
+		n:=algo.Nilakantha{}
 		
 		piterm := pi.PITerm(&n)
 		piterm.SetTerm(i)
@@ -56,7 +56,7 @@ func executeTerm(terms []pi.PITerm) float64 {
 }
 func main() {
 	
-	terms := createTerm(1000)
+	terms := createTerm(10000000)
 	pi := executeTerm(terms)
 	fmt.Println(pi)
 }

@@ -1,4 +1,4 @@
-package pi
+package algo
 
 type Nilakantha struct {
 	term      int
