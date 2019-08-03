@@ -1,3 +1,5 @@
 {
-  "go.gopath": "/Users/dexter/sandbox/golang/PiCalc"
+  //"go.gopath": "/Users/dexter/sandbox/golang/PiCalc"
+  //"go.inferGopath": true
+  "go.gopath": "/Users/dexter/sandbox/golang/section28Testing/example"
 }

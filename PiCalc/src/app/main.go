@@ -31,11 +31,12 @@ func executeTerm(terms []PITerm) float64 {
 	return finalValue
 }
 */
-func createTerm (numOfStep int) []pi.PITerm{
-	terms := make([]pi.PITerm, 0, numOfStep)
+func createTerm(numOfStep int) []pi.PITerm {
+	//terms := make([]pi.PITerm, 0, numOfStep)
+	terms := make([]pi.PITerm, 0)
 	for i := 0; i < numOfStep; i++ {
-		n:=algo.Nilakantha{}
-		
+		n := algo.Nilakantha{}
+
 		piterm := pi.PITerm(&n)
 		piterm.SetTerm(i)
 
@@ -55,7 +56,7 @@ func executeTerm(terms []pi.PITerm) float64 {
 	return finalValue
 }
 func main() {
-	
+
 	terms := createTerm(10000000)
 	pi := executeTerm(terms)
 	fmt.Println(pi)

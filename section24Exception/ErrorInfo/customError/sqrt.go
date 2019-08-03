@@ -16,10 +16,24 @@ func (n norgateMathError) Error() string {
 }
 
 func main() {
+
+	calculateSqrt(-100)
+	fmt.Println("nicely exit program")
+
+}
+
+func calculateSqrt(v float64) {
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered in sqrt", r)
+		}
+	}()
 	_, err := sqrt(-10.23)
 	if err != nil {
 		log.Println(err)
+		log.Panic("Exception from sqrt:", err)
 	}
+
 }
 
 func sqrt(f float64) (float64, error) {
