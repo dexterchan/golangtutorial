@@ -13,7 +13,7 @@ func main() {
 	defer cancel()
 
 	select {
-	case <-time.After(1 * time.Second):
+	case <-time.After(1 * time.Microsecond):
 		fmt.Println("overslept")
 	case <-ctx.Done():
 		fmt.Println(ctx.Err())

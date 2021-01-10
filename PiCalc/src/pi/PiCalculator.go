@@ -39,7 +39,7 @@ func CalculatePiByArray(seriesLength int) float64 {
 
 //CalculatePiByFanInOutChannel Pi calculation by channel
 func CalculatePiByFanInOutChannel(seriesLength int, concurrency int) float64 {
-	cPiTermGen := make(chan PITerm)
+	cPiTermGen := make(chan *PITerm)
 	cPiTermResult := make(chan float64)
 
 	generatePiTerm(seriesLength, cPiTermGen)
@@ -53,7 +53,7 @@ func CalculatePiByFanInOutChannel(seriesLength int, concurrency int) float64 {
 	return aggResult
 }
 
-func generatePiTerm(seriesLength int, cPiTermGen chan PITerm) <-chan PITerm {
+func generatePiTerm(seriesLength int, cPiTermGen chan *PITerm) {
 
 	go func() {
 		for i := 0; i < seriesLength; i++ {
@@ -62,14 +62,13 @@ func generatePiTerm(seriesLength int, cPiTermGen chan PITerm) <-chan PITerm {
 			piterm := PITerm(&n)
 			piterm.SetTerm(i)
 
-			cPiTermGen <- piterm
+			cPiTermGen <- &piterm
 		}
 		close(cPiTermGen)
 	}()
-	return cPiTermGen
 }
 
-func calculateFanOutIn(chanIn <-chan PITerm, chanOut chan float64, concurrency int) {
+func calculateFanOutIn(chanIn <-chan *PITerm, chanOut chan float64, concurrency int) {
 	var wg sync.WaitGroup
 	goroutines := concurrency
 	wg.Add(goroutines)
@@ -77,8 +76,8 @@ func calculateFanOutIn(chanIn <-chan PITerm, chanOut chan float64, concurrency i
 	for i := 0; i < goroutines; i++ {
 		go func() {
 			for v := range chanIn {
-				func(v2 PITerm) {
-					chanOut <- v2.CalculateTerm()
+				func(v2 *PITerm) {
+					chanOut <- (*v2).CalculateTerm()
 				}(v)
 			}
 			wg.Done()

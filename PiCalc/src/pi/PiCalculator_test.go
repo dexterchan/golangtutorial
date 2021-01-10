@@ -6,12 +6,17 @@ import (
 	"pi"
 	"runtime"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 const numOfStep = 100000
 
 func TestCalculatePiByArray(t *testing.T) {
 	pi := pi.CalculatePiByArray(numOfStep)
+
+	assert.InDelta(t, math.Pi, pi, 0.0000001)
+
 	if math.Abs(math.Pi-pi) > 0.0000001 {
 		t.Errorf("PI calculation inaccurate:%f", pi)
 	} else {

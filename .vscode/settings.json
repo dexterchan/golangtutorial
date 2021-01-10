@@ -1,5 +1,5 @@
 {
-  "go.gopath": "/Users/dexter/sandbox/golang/PiCalc"
+  "go.gopath": "${workspaceFolder}"
   //"go.inferGopath": true
   //"go.gopath": "/Users/dexter/sandbox/golang/section28Testing/example"
 }
